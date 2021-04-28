@@ -1,6 +1,9 @@
 import numpy as np 
 import sys, os
 import curses
+from cursesmenu import *
+from cursesmenu.items import *
+
 
 class Student:
     def __validateName(self, name):
@@ -136,36 +139,26 @@ def ShowCourse(courses):
 
     
 def UIdrawing(stdscr):
+    curses.initscr()
+    curses.cbreak()
+    curses.noecho()
+    
     k = 0 
     cursor_x = 0
     cursor_y = 0
-
-    stdscr.clear()
-    stdscr.refresh()
 
     curses.start_color()
     curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLUE)
     curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_BLUE)
     curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_GREEN)
 
-    #Loop where k is the last character pressed
-    while (k != ord('q')): 
+    menu = CursesMenu("Student Mark Management", "By NTQ")
+    menu_item = MenuItem("Menu Item")
 
-        #Initialization
-        stdscr.clear()
-
-        height, witd = stdscr.getmaxyx()
-
-        if k == curses.KEY_DOWN:
-            cursor_y = cursor_y + 1
-        elif k == curses.KEY_UP:
-            cursor_y = cursor_y + 1
-        elif
-
+    inputstudent = FunctionItem("Input Student Information", NumberofStudent, ["Enter an input"])
 
 def main():
     curses.wrapper(UIdrawing)
-
 
 #main 
 if __name__ == "__main__":
