@@ -137,28 +137,7 @@ def ShowCourse(courses):
     for course in courses:
         print(course.getName())
 
-    
-def UIdrawing(stdscr):
-    curses.initscr()
-    curses.cbreak()
-    curses.noecho()
-    
-    k = 0 
-    cursor_x = 0
-    cursor_y = 0
-
-    curses.start_color()
-    curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLUE)
-    curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_BLUE)
-    curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_GREEN)
-
-    menu = CursesMenu("Student Mark Management", "By NTQ")
-    menu_item = MenuItem("Menu Item")
-
-    inputstudent = FunctionItem("Input Student Information", NumberofStudent, ["Enter an input"])
-
 def main():
-    curses.wrapper(UIdrawing)
 
 #main 
 if __name__ == "__main__":
