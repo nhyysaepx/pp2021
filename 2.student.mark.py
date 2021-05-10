@@ -149,25 +149,3 @@ if __name__ == "main":
         ID = input("- Enter ID of the student: ")
         Mark = input("- Enter the mark of the students: ")
         courses.append(Course(name, ID, Mark))
-
-
-
-
-
-
-
-
-                
-
-
-
-        
-
-
-
-    
-
-
-
-
-

@@ -1,5 +1,9 @@
-import numpy as np
-import math
+import numpy as np 
+import sys, os
+import curses
+from cursesmenu import *
+from cursesmenu.items import *
+
 
 class Student:
     def __validateName(self, name):
@@ -61,13 +65,6 @@ class Student:
             self.__DoB = DoB
             return
         print("Invalid DoB")
-
-     def toString(self):
-            print(f"""
-                Name - {self.getName()}
-                ID - {self.getID()}
-                DoB - {self.getDoB()}
-            """)
         
 class Course:
     def __validateName(self, name):
@@ -83,12 +80,8 @@ class Course:
     def __validateMark(self, Mark):
         if(len(Mark) > 1):
             return True
-    
-    def _validateStudentName(self, StudentName):
-        if(len(StudentName) > 1):
-            return True
         
-    def __init__(self, name, ID, Mark, StudentName):
+    def __init__(self, name, ID, Mark):
         if(self.__validateID(ID) == False):
             print("Invalid ID")
         return
@@ -101,14 +94,9 @@ class Course:
             print("Invalid Name")
         return
 
-        if(self.__validateStudentName(StudentName) == False):
-            print("Invalid Student Name")
-        return
-
         self.__name = name
         self.__ID = ID
         self.__Mark = {}
-        self.__StudentName = StudentName
 
         def getName(self):
             return self.__name
@@ -127,19 +115,7 @@ class Course:
                 self.__ID = ID
                 return
             print("Invalid ID")
-
-        def getStudentName(self):
-            return self.__StudentName
         
-        def setStudentName(self, StudentName):
-            if(self.__validateStudentName(StudentName))::
-                self.__StudentName = StudentName
-                return
-            print("Invalid Student Name")
-            
-        def getMark(self):
-            return self.__Mark
-
         def setMark(self, students):
             for student in students:
                 stdName = students.getName()
@@ -148,28 +124,9 @@ class Course:
                     print("Invalid Mark")
                     mark = input("Re-input the mark:")
 
-        def toString1(self):
-            print(f"""
-                Course Name - {self.getName()}
-                Course ID - {self.getID()}
-            """)
-        
-        def toString2(self):
-            print(f"""
-                Course Name - {self.getName()}
-                Course ID - {self.getID()}
-                Student Name - {self.getStudentName()}
-                Student Mark - {self.getMark()}
-            """)
-
 def NumberofStudent():
     numberofstudent = int(input("- Enter the number of students in the class:"))
     return numberofstudent
-
-def ShowStudent(students):
-    print("The list of students that are taking: ")
-    for student in studnets:
-        print(f, "Name: " Student.getName(), "ID: " Student.getID(), "DoB: " Student.getDoB())
 
 def NumberofCourses():
     numberofcourses = int(input("- Enter the number of courses:"))
@@ -180,39 +137,32 @@ def ShowCourse(courses):
     for course in courses:
         print(course.getName())
 
-def display(list):
-    for i in list:
-        i.toString()
+    
+def UIdrawing(stdscr):
+    curses.initscr()
+    curses.cbreak()
+    curses.noecho()
+    
+    k = 0 
+    cursor_x = 0
+    cursor_y = 0
 
+    curses.start_color()
+    curses.init_pair(1, curses.COLOR_CYAN, curses.COLOR_BLUE)
+    curses.init_pair(2, curses.COLOR_BLACK, curses.COLOR_BLUE)
+    curses.init_pair(3, curses.COLOR_BLACK, curses.COLOR_GREEN)
 
-def CalculateAvgGPA(courses):
+    menu = CursesMenu("Student Mark Management", "By NTQ")
+    menu_item = MenuItem("Menu Item")
 
+    inputstudent = FunctionItem("Input Student Information", NumberofStudent, ["Enter an input"])
 
-
-def SortingGPA:
-
-
-
+def main():
+    curses.wrapper(UIdrawing)
 
 #main 
-if __name__ == "main":
-    students = []
-    courses = []
-
-    for i in range(NumberofStudent()):
-        print('- Enter information of this student: ')
-        name = input('- Enter student name: ')
-        DoB = input('- Enter student dob: ')
-        ID = input('- Enter ID of the student:')
-        students.append(Student(name, DoB, ID))
-
-    for i in range(NumberofCourses()):
-        print('- Enter information of this course: ')
-        name = input('- Enter course name: ')
-        ID = input("- Enter ID of the student: ")
-        Mark = input("- Enter the mark of the students: ")
-        courses.append(Course(name, ID, Mark))
-
+if __name__ == "__main__":
+    main()
 
 
 
